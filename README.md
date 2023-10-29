@@ -65,3 +65,18 @@ sudo apt-get install --reinstall libpq-dev
 ```
 sudo python3 ./test.py &
 ```
+## В случае ответа от сервера 404, 401 и тд:
+```
+Необходимо на машине, на которой скрипт заведомо работает и ответ от сервера дает 200, произвести команду ping или traceroute
+Например: 
+
+ping wickads-ld.irev.com
+traceroute wickads-ld.irev.com
+
+Полученный ip адрес необходимо приравнять на хосте(где ошибка) к нужному нам домену(wickads-ld.irev.com) в /etc/hosts:
+
+nano /etc/hosts
+(вписываем в таком формате)
+<полученный айпи> wickads-ld.irev.com
+ctrl+x
+enter
