@@ -52,6 +52,8 @@ ctrl+d
 sudo apt install python3
 sudo apt install python3-pip
 sudo pip install psycopg2
+sudo pip install requests
+sudo pip install datetime
 
 (Если возникают ошибки с либой libpq-dev)
 sudo -H pip3 install --upgrade pip
