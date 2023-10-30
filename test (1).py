@@ -8,7 +8,7 @@ import time
 host = "5.63.155.57"
 port = "5432"
 user = "postgres"
-password = "r%ibB3f0#h0i"
+password = ""
 database = "db_peach"
 
 connection = psycopg2.connect(
