@@ -1,11 +1,11 @@
 import psycopg2
 from psycopg2 import sql
 import requests
-import datetime as dt
+import datetime
 from datetime import datetime, timedelta
 import time
 
-host = "localhost"
+host = "5.63.155.57"
 port = "5432"
 user = "postgres"
 password = "r%ibB3f0#h0i"
@@ -59,7 +59,7 @@ events_payload = {
 def send_error(text):
     TOKEN = "6032236467:AAGj33GpBBssYSDmLyG7RBJpxCeu7NQaej8"
     chat_id = "579340957"
-    now = dt.datetime.now()
+    now = datetime.now()
     message = text + f". Time: {now}"
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
     requests.get(url).json()
@@ -80,116 +80,115 @@ def check_table_exists(cursor, table_name):
 def create_table(cursor, table_name):
     sql_code_events = f"""
     CREATE TABLE IF NOT EXISTS {table_name} (
-        uuid VARCHAR(1000),
-        adv_sub VARCHAR(1000),
-        aff_sub VARCHAR(1000),
-        aff_sub10 VARCHAR(1000),
-        aff_sub11 VARCHAR(1000),
-        aff_sub12 VARCHAR(1000),
-        aff_sub13 VARCHAR(1000),
-        aff_sub14 VARCHAR(1000),
-        aff_sub15 VARCHAR(1000),
-        aff_sub16 VARCHAR(1000),
-        aff_sub17 VARCHAR(1000),
-        aff_sub18 VARCHAR(1000),
-        aff_sub19 VARCHAR(1000),
-        aff_sub2 VARCHAR(1000),
-        aff_sub20 VARCHAR(1000),
-        aff_sub3 VARCHAR(1000),
-        aff_sub4 VARCHAR(1000),
-        aff_sub5 VARCHAR(1000),
-        aff_sub6 VARCHAR(1000),
-        aff_sub7 VARCHAR(1000),
-        aff_sub8 VARCHAR(1000),
-        aff_sub9 VARCHAR(1000),
+        uuid TEXT,
+        adv_sub TEXT,
+        aff_sub TEXT,
+        aff_sub10 TEXT,
+        aff_sub11 TEXT,
+        aff_sub12 TEXT,
+        aff_sub13 TEXT,
+        aff_sub14 TEXT,
+        aff_sub15 TEXT,
+        aff_sub16 TEXT,
+        aff_sub17 TEXT,
+        aff_sub18 TEXT,
+        aff_sub19 TEXT,
+        aff_sub2 TEXT,
+        aff_sub20 TEXT,
+        aff_sub3 TEXT,
+        aff_sub4 TEXT,
+        aff_sub5 TEXT,
+        aff_sub6 TEXT,
+        aff_sub7 TEXT,
+        aff_sub8 TEXT,
+        aff_sub9 TEXT,
         affiliate_id INTEGER,
         offer_id INTEGER,
-        hash VARCHAR(1000),
-        advertiserUuid VARCHAR(1000),
-        advertiser VARCHAR(1000),
-        country VARCHAR(1000),
-        saleStatus VARCHAR(1000),
-        crmSaleStatus VARCHAR(1000),
-        fsmState VARCHAR(1000),
-        manualStatusType VARCHAR(1000),
+        hash TEXT,
+        advertiserUuid TEXT,
+        advertiser TEXT,
+        country TEXT,
+        saleStatus TEXT,
+        crmSaleStatus TEXT,
+        fsmState TEXT,
+        manualStatusType TEXT,
         wasRejected BOOLEAN,
-        listOfAdvertisers VARCHAR(1000),
-        allRejectionReasons VARCHAR(1000),
-        rejectionReason VARCHAR(1000),
+        listOfAdvertisers TEXT,
+        allRejectionReasons TEXT,
+        rejectionReason TEXT,
         autoLoginSuccess BOOLEAN,
-        autoLoginUrl VARCHAR(1000),
-        autoLoginDomain VARCHAR(1000),
+        autoLoginUrl TEXT,
+        autoLoginDomain TEXT,
         stateUpdatedAt TIMESTAMP,
         payout DECIMAL(10, 2),
         revenue DECIMAL(10, 2),
-        leadSource VARCHAR(1000),
-        funnelGroupUuid VARCHAR(1000),
-        funnelGroup VARCHAR(1000),
-        funnelUuid VARCHAR(1000),
-        funnelLanguage VARCHAR(1000),
-        tpUuid VARCHAR(1000),
-        trafficProvider VARCHAR(1000),
-        externalId VARCHAR(1000),
-        ip VARCHAR(1000),
-        apiToken VARCHAR(1000),
-        apiTokenName VARCHAR(1000),
-        fsmUuid VARCHAR(1000),
-        fsm VARCHAR(1000),
+        leadSource TEXT,
+        funnelGroupUuid TEXT,
+        funnelGroup TEXT,
+        funnelUuid TEXT,
+        funnelLanguage TEXT,
+        tpUuid TEXT,
+        trafficProvider TEXT,
+        externalId TEXT,
+        ip TEXT,
+        apiToken TEXT,
+        apiTokenName TEXT,
+        fsmUuid TEXT,
+        fsm TEXT,
         comment TEXT,
         isRisky BOOLEAN,
         isHasConversions BOOLEAN,
         isLate BOOLEAN,
         isTest BOOLEAN,
         afmDate TIMESTAMP,
-        createdAt TIMESTAMP,
-        PRIMARY KEY (uuid)
+        createdAt TIMESTAMP
     );
     """
 
     sql_code_conversions = f"""
     CREATE TABLE IF NOT EXISTS {table_name} (
-        uuid UUID,
-        lead_adv_sub VARCHAR(700),
-        lead_aff_sub VARCHAR(700),
-        lead_aff_sub10 VARCHAR(700),
-        lead_aff_sub11 VARCHAR(700),
-        lead_aff_sub12 VARCHAR(700),
-        lead_aff_sub13 VARCHAR(700),
-        lead_aff_sub14 VARCHAR(700),
-        lead_aff_sub15 VARCHAR(700),
-        lead_aff_sub16 VARCHAR(700),
-        lead_aff_sub17 VARCHAR(700),
-        lead_aff_sub18 VARCHAR(700),
-        lead_aff_sub19 VARCHAR(700),
-        lead_aff_sub2 VARCHAR(700),
-        lead_aff_sub20 VARCHAR(700),
-        lead_aff_sub3 VARCHAR(700),
-        lead_aff_sub4 VARCHAR(700),
-        lead_aff_sub5 VARCHAR(700),
-        lead_aff_sub6 VARCHAR(700),
-        lead_aff_sub7 VARCHAR(700),
-        lead_aff_sub8 VARCHAR(700),
-        lead_aff_sub9 VARCHAR(700),
-        lead_affiliate_id VARCHAR(700),
-        lead_offer_id VARCHAR(700),
-        lead_hash VARCHAR(700),
-        leadUuid VARCHAR(700),
+        uuid TEXT,
+        lead_adv_sub TEXT,
+        lead_aff_sub TEXT,
+        lead_aff_sub10 TEXT,
+        lead_aff_sub11 TEXT,
+        lead_aff_sub12 TEXT,
+        lead_aff_sub13 TEXT,
+        lead_aff_sub14 TEXT,
+        lead_aff_sub15 TEXT,
+        lead_aff_sub16 TEXT,
+        lead_aff_sub17 TEXT,
+        lead_aff_sub18 TEXT,
+        lead_aff_sub19 TEXT,
+        lead_aff_sub2 TEXT,
+        lead_aff_sub20 TEXT,
+        lead_aff_sub3 TEXT,
+        lead_aff_sub4 TEXT,
+        lead_aff_sub5 TEXT,
+        lead_aff_sub6 TEXT,
+        lead_aff_sub7 TEXT,
+        lead_aff_sub8 TEXT,
+        lead_aff_sub9 TEXT,
+        lead_affiliate_id TEXT,
+        lead_offer_id TEXT,
+        lead_hash TEXT,
+        leadUuid TEXT,
         payout DECIMAL(10, 2),
         revenue DECIMAL(10, 2),
-        funnelGroupUuid VARCHAR(700),
-        funnelGroup VARCHAR(700),
-        funnelUuid VARCHAR(700),
-        funnel_name VARCHAR(700),
-        tpUuid VARCHAR(700),
-        trafficProvider VARCHAR(700),
-        country VARCHAR(700),
-        goalTypeUuid VARCHAR(700),
-        goalType VARCHAR(700),
-        goalUuid VARCHAR(700),
-        goalName VARCHAR(700),
-        advertiserUuid VARCHAR(700),
-        advertiser VARCHAR(700),
-        manualStatusType VARCHAR(700),
+        funnelGroupUuid TEXT,
+        funnelGroup TEXT,
+        funnelUuid TEXT,
+        funnel_name TEXT,
+        tpUuid TEXT,
+        trafficProvider TEXT,
+        country TEXT,
+        goalTypeUuid TEXT,
+        goalType TEXT,
+        goalUuid TEXT,
+        goalName TEXT,
+        advertiserUuid TEXT,
+        advertiser TEXT,
+        manualStatusType TEXT,
         isApproved BOOLEAN,
         isLate BOOLEAN,
         isTest BOOLEAN,
@@ -219,7 +218,7 @@ def check_table(cursor, name):
 
 def format_date(input_date):
     # Преобразовать строку в объект datetime
-    dt_object = dt.strptime(input_date, "%Y-%m-%dT%H:%M:%S.%fZ")
+    dt_object = datetime.strptime(input_date, "%Y-%m-%dT%H:%M:%S.%fZ")
     # Преобразовать объект datetime обратно в строку с нужным форматом
     formatted_date = dt_object.strftime("%Y-%m-%d %H:%M:%S.%f")
     return formatted_date[:-3] + "000"
@@ -317,7 +316,7 @@ def parse(url, payload, cursor, name):
         current_payload['page'] += 1
 
 if __name__ == "__main__":
-    interval = 0.5  # interval in hours
+    interval = 4  # interval in hours
     while True:
         connection = psycopg2.connect(
             host=host,
@@ -338,5 +337,5 @@ if __name__ == "__main__":
         cursor.close()
         connection.close()
 
-        next_hour = dt.datetime.now() + timedelta(hours=interval)
-        time.sleep((next_hour - dt.datetime.now()).seconds)
+        next_hour = datetime.now() + timedelta(hours=interval)
+        time.sleep((next_hour - datetime.now()).seconds)
